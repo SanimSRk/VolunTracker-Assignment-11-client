@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
-
+import userProfile from '..//..//..//../public/user-profile.png';
 const Naver = () => {
   const { user, logOutUsers } = useContext(AuthContext);
 
@@ -40,8 +40,8 @@ const Naver = () => {
       });
   };
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="">
+      <div className="navbar bg-base-100 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -78,17 +78,14 @@ const Naver = () => {
         <div className="navbar-end gap-4">
           {user ? (
             <>
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end z-10">
                 <div
                   tabIndex={0}
                   role="button"
                   className="btn btn-ghost btn-circle avatar"
                 >
                   <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    />
+                    <img src={user?.photoURL || userProfile} />
                   </div>
                 </div>
                 <ul
@@ -97,14 +94,13 @@ const Naver = () => {
                 >
                   <li>
                     <a className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
+                      {user?.displayName || 'Name not found'}
                     </a>
                   </li>
                   <li>
                     <a>Settings</a>
                   </li>
-                  <li>
+                  <li onClick={hadileClickLogout}>
                     <a>Logout</a>
                   </li>
                 </ul>

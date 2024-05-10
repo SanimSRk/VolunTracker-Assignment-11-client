@@ -5,8 +5,12 @@ import Footer from '../Compment/Footer/Footer';
 const MainLayout = () => {
   return (
     <div className="">
-      <Naver></Naver>
-      <Outlet></Outlet>
+      <div className="">
+        <Naver></Naver>
+      </div>
+      <div className="">
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
   );
