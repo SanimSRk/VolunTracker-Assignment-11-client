@@ -1,8 +1,15 @@
-import React from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../AuthContext/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Registerss = () => {
+  const { createUser, logOutUsers, updateUserProfile } =
+    useContext(AuthContext);
+  const [error, setErrors] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -11,7 +18,40 @@ const Registerss = () => {
   } = useForm();
   const onSubmit = data => {
     const { fullName, email, password, photo } = data;
+
     console.log(fullName, email, password, photo);
+    if (password.length < 6) {
+      setErrors('Password should be at least 6 characters');
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setErrors('Password does not have at least one uppercase letter');
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      setErrors('Password does not have at least one lowercase letter');
+      return;
+    } else {
+      setErrors(null);
+    }
+
+    createUser(email, password)
+      .then(res => {
+        console.log(res.user);
+        if (res.user) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'SuccessFully registration!',
+            icon: 'success',
+          });
+
+          logOutUsers();
+        }
+        updateUserProfile(fullName, photo).then(() => {
+          navigate(location.state || '/login');
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -70,11 +110,9 @@ const Registerss = () => {
                   required
                   {...register('password', { required: true })}
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                <p className="text-center font-semibold text-red-500">
+                  {error}
+                </p>
               </div>
               <div className="form-control mt-6">
                 <input

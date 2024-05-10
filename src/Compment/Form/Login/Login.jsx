@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../AuthContext/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+  const { singUsers, handileGoogleLogin } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const {
     register,
     handleSubmit,
@@ -11,7 +19,38 @@ const Login = () => {
   } = useForm();
   const onSubmit = data => {
     const { email, password } = data;
-    console.log(email, password);
+
+    singUsers(email, password)
+      .then(res => {
+        console.log(res.user);
+        if (res.user) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'SuccessFully Login!',
+            icon: 'success',
+          });
+        }
+        navigate(location.state || '/');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  const handileClickGoogle = () => {
+    handileGoogleLogin()
+      .then(res => {
+        if (res.user) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'SuccessFully google sing!',
+            icon: 'success',
+          });
+        }
+        navigate(location.state || '/');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -71,7 +110,10 @@ const Login = () => {
               </div>
             </form>
             <div className="grid justify-center ">
-              <button className="btn p-0 rounded-full mb-4">
+              <button
+                onClick={handileClickGoogle}
+                className="btn p-0 rounded-full mb-4"
+              >
                 <FcGoogle className="text-5xl  "></FcGoogle>
               </button>
             </div>

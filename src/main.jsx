@@ -8,6 +8,7 @@ import Volunteer from './Pages/Volunteer/Volunteer';
 import Login from './Compment/Form/Login/Login';
 
 import Registerss from './Compment/Form/registration/Registerss';
+import AuthProvider from './AuthContext/AuthProvider';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -34,8 +35,10 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className="max-w-7xl mx-auto">
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
+    <AuthProvider>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </AuthProvider>
   </div>
 );
