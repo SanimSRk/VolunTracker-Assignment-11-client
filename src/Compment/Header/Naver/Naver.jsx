@@ -73,7 +73,7 @@ const Naver = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-7">{link}</ul>
+          <ul className="menu menu-horizontal px-1 gap-6">{link}</ul>
         </div>
         <div className="navbar-end gap-4">
           {user ? (
@@ -90,16 +90,28 @@ const Naver = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-56 gap-3"
                 >
                   <li>
                     <a className="justify-between">
                       {user?.displayName || 'Name not found'}
                     </a>
                   </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
+                  <Link to={'/addpost'}>
+                    <li>
+                      <a>Add Volunteer Post</a>
+                    </li>
+                  </Link>
+                  <Link>
+                    <li>
+                      <a>Manage My Post</a>
+                    </li>
+                  </Link>
+                  <Link>
+                    <li>
+                      <a>My Volunteer Requested Post</a>
+                    </li>
+                  </Link>
                   <li onClick={hadileClickLogout}>
                     <a>Logout</a>
                   </li>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
   const { singUsers, handileGoogleLogin } = useContext(AuthContext);
-
+  const [errorMassage, setErrors] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,6 +34,9 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error);
+        if (error) {
+          setErrors('Invalid email or password. Please try again.');
+        }
       });
   };
   const handileClickGoogle = () => {
@@ -89,6 +92,7 @@ const Login = () => {
                     Forgot password?
                   </a>
                 </label>
+                <p className="text-red-500 font-semibold">{errorMassage}</p>
               </div>
               <div className="form-control mt-6">
                 <input
