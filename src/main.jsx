@@ -10,6 +10,7 @@ import Login from './Compment/Form/Login/Login';
 import Registerss from './Compment/Form/registration/Registerss';
 import AuthProvider from './AuthContext/AuthProvider';
 import AddVolunteers from './Compment/Form/AddVolunteer/AddVolunteers';
+import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/addpost',
-        element: <AddVolunteers></AddVolunteers>,
+        element: (
+          <PrivtedRoutd>
+            <AddVolunteers></AddVolunteers>
+          </PrivtedRoutd>
+        ),
       },
     ],
   },
