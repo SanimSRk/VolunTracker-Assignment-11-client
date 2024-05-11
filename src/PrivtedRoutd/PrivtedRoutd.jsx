@@ -9,7 +9,7 @@ const PrivtedRoutd = ({ children }) => {
     return 'loding hoytasi.......';
   }
   if (!user) {
-    return <Navigate state={location.pathname || '/login'}></Navigate>;
+    return <Navigate to={'/login'} state={location?.pathname}></Navigate>;
   }
 
   return <div>{children}</div>;

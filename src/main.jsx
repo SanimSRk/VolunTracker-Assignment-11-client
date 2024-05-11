@@ -11,6 +11,7 @@ import Registerss from './Compment/Form/registration/Registerss';
 import AuthProvider from './AuthContext/AuthProvider';
 import AddVolunteers from './Compment/Form/AddVolunteer/AddVolunteers';
 import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
+import NeedVolunteerDeatuks from './Pages/Home/needVolunter/NeedVolunteerDeatuks';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -39,6 +40,16 @@ const router = createBrowserRouter([
             <AddVolunteers></AddVolunteers>
           </PrivtedRoutd>
         ),
+      },
+      {
+        path: '/volunteerDeatils/:id',
+        element: (
+          <PrivtedRoutd>
+            <NeedVolunteerDeatuks></NeedVolunteerDeatuks>
+          </PrivtedRoutd>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteers/${params.id}`),
       },
     ],
   },
