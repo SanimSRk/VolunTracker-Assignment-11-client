@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 const AddVolunteers = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
@@ -17,15 +19,8 @@ const AddVolunteers = () => {
   } = useForm();
 
   const onSubmit = data => {
-    const {
-      thumbnail,
-      title,
-      description,
-      category,
-      location,
-      deadline,
-      neededNumber,
-    } = data;
+    const { thumbnail, title, description, category, location, neededNumber } =
+      data;
 
     const volunteer = {
       thumbnail,
@@ -38,6 +33,17 @@ const AddVolunteers = () => {
       fullName,
       startDate,
     };
+
+    axios.post('http://localhost:5000/volunteers', volunteer).then(res => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: 'Good job!',
+          text: 'successFully Volunteer post add!',
+          icon: 'success',
+        });
+      }
+    });
   };
 
   return (
