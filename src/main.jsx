@@ -12,6 +12,7 @@ import AuthProvider from './AuthContext/AuthProvider';
 import AddVolunteers from './Compment/Form/AddVolunteer/AddVolunteers';
 import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
 import NeedVolunteerDeatuks from './Pages/Home/needVolunter/NeedVolunteerDeatuks';
+import AllVolunterDeatils from './Pages/Volunteer/AllVolunterDeatils';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -50,6 +51,16 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/volunteers/${params.id}`),
+      },
+      {
+        path: '/allVolunterDeatils/:id',
+        element: (
+          <PrivtedRoutd>
+            <AllVolunterDeatils></AllVolunterDeatils>
+          </PrivtedRoutd>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allVolunteers/${params.id}`),
       },
     ],
   },
