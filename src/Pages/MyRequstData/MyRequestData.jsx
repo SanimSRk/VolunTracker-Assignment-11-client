@@ -1,18 +1,16 @@
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
 
-const MonageMyPost = () => {
-  const [myPost, setMyPost] = useState([]);
-
+const MyRequestData = () => {
+  const [requestDt, setRequestDt] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/mangesPost?email=${user.email}`)
+      .get(`http://localhost:5000/myrequstData?email=${user.email}`)
       .then(res => {
-        setMyPost(res.data);
+        setRequestDt(res.data);
       });
   }, []);
 
@@ -24,19 +22,19 @@ const MonageMyPost = () => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes, Cancellation it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/mangesPost/${id}`).then(res => {
+        axios.delete(`http://localhost:5000/myrequstData/${id}`).then(res => {
           if (res.data.deletedCount > 0) {
             Swal.fire({
-              title: 'Deleted!',
+              title: 'Cancellation!',
               text: 'Your file has been deleted.',
               icon: 'success',
             });
           }
-          const deletePost = myPost.filter(prod => prod._id !== id);
-          setMyPost(deletePost);
+          const deletePost = requestDt.filter(prod => prod._id !== id);
+          setRequestDt(deletePost);
         });
       }
     });
@@ -45,7 +43,7 @@ const MonageMyPost = () => {
   return (
     <div className="mb-[120px] mt-8">
       <div className="text-center">
-        <h2 className="text-3xl font-bold">Manage My Post</h2>
+        <h2 className="text-3xl font-bold">My Volunteer Request</h2>
       </div>
 
       <div className="mt-12">
@@ -57,32 +55,28 @@ const MonageMyPost = () => {
                 <th></th>
                 <th>Category</th>
                 <th>Needed Number</th>
-                <th>Location</th>
+                <th>Status</th>
                 <th>Deadline</th>
               </tr>
             </thead>
-            {myPost.map((pro, index) => (
+            {requestDt.map((pro, index) => (
               <tbody key={index}>
                 {/* row 1 */}
                 <tr className="bg-base-200 ">
-                  <th>{index + 1}</th>
+                  <th className="py-6">{index + 1}</th>
                   <td>{pro?.category}</td>
                   <td>{pro?.neededNumber} person</td>
-                  <td>{pro?.location}</td>
+                  <td className="btn rounded-3xl bg-[#f26837] text-white">
+                    {pro?.status}
+                  </td>
                   <td>{pro?.startDate}</td>
 
                   <div className="flex gap-6">
-                    <Link to={`/updates/${pro._id}`}>
-                      {' '}
-                      <button className="btn bg-[#f26837] text-white">
-                        Update
-                      </button>
-                    </Link>
                     <button
                       onClick={() => handileClickDeletes(pro._id)}
                       className="btn bg-[#f26837] text-white"
                     >
-                      Delete
+                      Cancel
                     </button>
                   </div>
                 </tr>
@@ -95,4 +89,4 @@ const MonageMyPost = () => {
   );
 };
 
-export default MonageMyPost;
+export default MyRequestData;
