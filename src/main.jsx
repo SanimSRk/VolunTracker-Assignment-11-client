@@ -14,6 +14,7 @@ import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
 
 import AllVolunterDeatils from './Pages/Volunteer/AllVolunterDeatils';
 import MonageMyPost from './Pages/Volunteer/MonageMyPost';
+import Updates from './Pages/MangageMyPost/Mange/Updates/Updates';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -71,6 +72,16 @@ const router = createBrowserRouter([
             <MonageMyPost></MonageMyPost>
           </PrivtedRoutd>
         ),
+      },
+      {
+        path: 'updates/:id',
+        element: (
+          <PrivtedRoutd>
+            <Updates></Updates>
+          </PrivtedRoutd>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/loderData/${params.id}`),
       },
     ],
   },

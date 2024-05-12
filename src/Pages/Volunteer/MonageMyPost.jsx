@@ -68,19 +68,19 @@ const MonageMyPost = () => {
                   <th>{index + 1}</th>
                   <td>{pro?.category}</td>
                   <td>{pro?.neededNumber} person</td>
-                  <td>${pro?.location}</td>
+                  <td>{pro?.location}</td>
                   <td>{pro?.startDate}</td>
 
                   <div className="flex gap-6">
                     <Link to={`/updates/${pro._id}`}>
                       {' '}
-                      <button className="btn bg-[#FF497C] text-white">
+                      <button className="btn bg-[#f26837] text-white">
                         Update
                       </button>
                     </Link>
                     <button
                       onClick={() => handileClickDeletes(pro._id)}
-                      className="btn bg-[#FF497C] text-white"
+                      className="btn bg-[#f26837] text-white"
                     >
                       Delete
                     </button>
