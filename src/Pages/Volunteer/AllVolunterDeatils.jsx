@@ -3,10 +3,14 @@ import { BsInstagram, BsTwitterX } from 'react-icons/bs';
 import { FaFacebook } from 'react-icons/fa6';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AllVolunterDeatils = () => {
   const { user } = useContext(AuthContext);
   const usloader = useLoaderData();
+
   const {
     thumbnail,
     title,
@@ -18,6 +22,48 @@ const AllVolunterDeatils = () => {
     fullName,
     startDate,
   } = usloader;
+  const volunteerName = user.displayName;
+  const volunteerEmail = user.email;
+  const status = 'Request';
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = data => {
+    const { suggestion } = data;
+
+    const volunteerRequest = {
+      thumbnail,
+      title,
+      description,
+      category,
+      location,
+      neededNumber,
+      email,
+      fullName,
+      startDate,
+      status,
+      volunteerName,
+      volunteerEmail,
+      suggestion,
+    };
+    axios
+      .post('http://localhost:5000/volunteerRequest', volunteerRequest)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your request successfully send!',
+            icon: 'success',
+          });
+        }
+      });
+  };
+
   return (
     <div className="my-[120px]">
       <div className="lg:flex gap-7 ">
@@ -43,32 +89,65 @@ const AllVolunterDeatils = () => {
 
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+
             <div className="modal " role="dialog">
               <div className="modal-box w-[100vh]">
-                <div className="">
-                  <div className="w-full">
-                    <img className="w-full" src={thumbnail} alt="" />
-                  </div>
-                  <div>
-                    <h2>{title}</h2>
-                    <h2 className="my-3">{category}</h2>
-
-                    <p className="">{description}</p>
-                    <p className="mt-4">location: {location}</p>
-
-                    <p className="my-3">
-                      Need Volunteer : {neededNumber} person
-                    </p>
-                    <p className="">Deadline : {startDate}</p>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="">
+                    <div className="w-full">
+                      <img className="w-full" src={thumbnail} alt="" />
+                    </div>
                     <div>
-                      <h2 className="my-3">Organizer name : {fullName}</h2>
-                      <h2>Organizer email : {email}</h2>
+                      <h2>{title}</h2>
+                      <h2 className="my-3">{category}</h2>
+
+                      <p className="">{description}</p>
+                      <p className="mt-4">location: {location}</p>
+
+                      <p className="my-3">
+                        Need Volunteer : {neededNumber} person
+                      </p>
+                      <p className="">Deadline : {startDate}</p>
+                      <div>
+                        <h2 className="my-3">Organizer name : {fullName}</h2>
+                        <h2>Organizer email : {email}</h2>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 my-3">
+                      <div className="form-control w-1/2">
+                        <label className="label">
+                          <span className="label-text">Your Name</span>
+                        </label>
+                        <div className="input-bordered input grid justify-center items-center">
+                          {user?.displayName}
+                        </div>
+                      </div>
+                      <div className="form-control w-1/2">
+                        <label className="label">
+                          <span className="label-text">Your Email</span>
+                        </label>
+                        <div className="input-bordered input grid justify-center items-center">
+                          {user?.email}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text">Suggestion</span>
+                      </label>
+                      <textarea
+                        placeholder="giv me suggestion"
+                        className="textarea textarea-bordered textarea-md w-full "
+                        {...register('suggestion', { required: true })}
+                      ></textarea>
                     </div>
                   </div>
-                  <h2>Your Name : {user?.displayName}</h2>
-                  <h2>Your email : {user?.email}</h2>
-                </div>
-                <button className="btn w-full mt-4">Request</button>
+                  <input
+                    className="btn text-white w-full mt-4 bg-[#f26837]"
+                    type="submit"
+                    value="Request"
+                  />
+                </form>
               </div>
 
               <label className="modal-backdrop" htmlFor="my_modal_7">

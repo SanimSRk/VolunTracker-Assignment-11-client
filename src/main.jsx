@@ -13,6 +13,7 @@ import AddVolunteers from './Compment/Form/AddVolunteer/AddVolunteers';
 import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
 import NeedVolunteerDeatuks from './Pages/Home/needVolunter/NeedVolunteerDeatuks';
 import AllVolunterDeatils from './Pages/Volunteer/AllVolunterDeatils';
+import MonageMyPost from './Pages/Volunteer/MonageMyPost';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -61,6 +62,15 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allVolunteers/${params.id}`),
+      },
+      {
+        path: '/myMangePost',
+        element: (
+          <PrivtedRoutd>
+            {' '}
+            <MonageMyPost></MonageMyPost>
+          </PrivtedRoutd>
+        ),
       },
     ],
   },
