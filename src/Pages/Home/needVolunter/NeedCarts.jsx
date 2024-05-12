@@ -9,7 +9,7 @@ const NeedCarts = ({ need }) => {
       <h2 className=" font-semibold mt-4">{title}</h2>
       <p className="my-3">{category}</p>
       <p>Deadline : {startDate}</p>
-      <Link to={`/volunteerDeatils/${_id}`}>
+      <Link to={`/allVolunterDeatils/${_id}`}>
         <button className="btn bg-[#f26837] w-full text-white mt-6">
           View Details <FaArrowRightLong className="text-xl" />
         </button>

@@ -102,7 +102,7 @@ const Naver = () => {
                       <a>Add Volunteer Post</a>
                     </li>
                   </Link>
-                  <Link>
+                  <Link to={'/myMangePost'}>
                     <li>
                       <a>Manage My Post</a>
                     </li>
