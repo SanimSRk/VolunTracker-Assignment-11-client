@@ -6,7 +6,7 @@ const PrivtedRoutd = ({ children }) => {
   const { user, lodings } = useContext(AuthContext);
   const location = useLocation();
   if (lodings) {
-    return 'loding hoytasi.......';
+    return <span className="loading loading-spinner loading-lg"></span>;
   }
   if (!user) {
     return <Navigate to={'/login'} state={location?.pathname}></Navigate>;
