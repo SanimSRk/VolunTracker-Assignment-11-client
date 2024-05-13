@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import DatePicker from 'react-datepicker';
@@ -12,6 +12,10 @@ const AddVolunteers = () => {
   console.log(email, fullName);
 
   const [startDate, setStartDate] = useState(new Date());
+
+  useEffect(() => {
+    document.title = 'Add-volunteer';
+  }, []);
   const {
     register,
     handleSubmit,

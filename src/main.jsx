@@ -13,10 +13,11 @@ import AddVolunteers from './Compment/Form/AddVolunteer/AddVolunteers';
 import PrivtedRoutd from './PrivtedRoutd/PrivtedRoutd';
 
 import AllVolunterDeatils from './Pages/Volunteer/AllVolunterDeatils';
-import MonageMyPost from './Pages/Volunteer/MonageMyPost';
+
 import Updates from './Pages/MangageMyPost/Mange/Updates/Updates';
-import MyRequestData from './Pages/MyRequstData/MyRequestData';
+
 import NotFound from './Compment/NoutFound/NotFound';
+import AllManageMyPost from './AllMangeMyPost/AllManageMyPost';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -47,16 +48,7 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
       },
-      // {
-      //   path: '/volunteerDeatils/:id',
-      //   element: (
-      //     <PrivtedRoutd>
-      //       <NeedVolunteerDeatuks></NeedVolunteerDeatuks>
-      //     </PrivtedRoutd>
-      //   ),
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/volunteers/${params.id}`),
-      // },
+
       {
         path: '/allVolunterDeatils/:id',
         element: (
@@ -67,15 +59,7 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allVolunteers/${params.id}`),
       },
-      {
-        path: '/myMangePost',
-        element: (
-          <PrivtedRoutd>
-            {' '}
-            <MonageMyPost></MonageMyPost>
-          </PrivtedRoutd>
-        ),
-      },
+
       {
         path: 'updates/:id',
         element: (
@@ -86,11 +70,12 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/loderData/${params.id}`),
       },
+
       {
-        path: '/myRequst',
+        path: '/allManegeMyPost',
         element: (
           <PrivtedRoutd>
-            <MyRequestData></MyRequestData>
+            <AllManageMyPost></AllManageMyPost>
           </PrivtedRoutd>
         ),
       },

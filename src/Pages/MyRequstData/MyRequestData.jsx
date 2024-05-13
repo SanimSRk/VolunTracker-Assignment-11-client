@@ -5,7 +5,9 @@ import Swal from 'sweetalert2';
 
 const MyRequestData = () => {
   const [requestDt, setRequestDt] = useState([]);
+
   const { user } = useContext(AuthContext);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/myrequstData?email=${user.email}`)
@@ -46,45 +48,61 @@ const MyRequestData = () => {
         <h2 className="text-3xl font-bold">My Volunteer Request</h2>
       </div>
 
-      <div className="mt-12">
-        <div className="overflow-x-auto">
-          <table className="table w-full">
-            {/* head */}
-            <thead>
-              <tr className="text-xl font-bold">
-                <th></th>
-                <th>Category</th>
-                <th>Needed Number</th>
-                <th>Status</th>
-                <th>Deadline</th>
-              </tr>
-            </thead>
-            {requestDt.map((pro, index) => (
-              <tbody key={index}>
-                {/* row 1 */}
-                <tr className="bg-base-200 ">
-                  <th className="py-6">{index + 1}</th>
-                  <td>{pro?.category}</td>
-                  <td>{pro?.neededNumber} person</td>
-                  <td className="btn rounded-3xl bg-[#f26837] text-white">
-                    {pro?.status}
-                  </td>
-                  <td>{pro?.startDate}</td>
+      {requestDt?.length == 0 ? (
+        <>
+          <div className="md:w-2/3 text-center mx-auto h-[70vh] lg:w-2/3 grid justify-center items-center">
+            <p className="text-2xl font-bold">
+              Thank you for your interest in volunteering! Unfortunately, we
+              currently don't have any available opportunities that match your
+              request
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="mt-12">
+            <div className="overflow-x-auto">
+              <table className="table w-full">
+                {/* head */}
+                <thead>
+                  <tr className="text-xl font-bold">
+                    <th></th>
+                    <th>Category</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                  </tr>
+                </thead>
 
-                  <div className="flex gap-6">
-                    <button
-                      onClick={() => handileClickDeletes(pro._id)}
-                      className="btn bg-[#f26837] text-white"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        </div>
-      </div>
+                {requestDt.map((pro, index) => (
+                  <tbody key={index}>
+                    {/* row 1 */}
+
+                    <tr className="bg-base-200 ">
+                      <th className="py-6">{index + 1}</th>
+                      <td>{pro?.category}</td>
+                      <td>{pro?.email} person</td>
+                      <td className="btn rounded-3xl bg-[#f26837] text-white">
+                        {pro?.status}
+                      </td>
+                      <td>{pro?.startDate}</td>
+
+                      <div className="flex gap-6">
+                        <button
+                          onClick={() => handileClickDeletes(pro._id)}
+                          className="btn bg-[#f26837] text-white"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

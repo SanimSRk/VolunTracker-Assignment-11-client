@@ -4,7 +4,9 @@ import AllVoluntterCart from './AllVoluntterCart';
 
 const Volunteer = () => {
   const [volunteers, setVolunteers] = useState([]);
-
+  useEffect(() => {
+    document.title = 'Volunteer-Needs';
+  }, []);
   useEffect(() => {
     axios.get('http://localhost:5000/allVolunteers').then(res => {
       setVolunteers(res.data);

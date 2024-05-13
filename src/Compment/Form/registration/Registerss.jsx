@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
@@ -8,6 +8,10 @@ const Registerss = () => {
   const { createUser, logOutUsers, updateUserProfile } =
     useContext(AuthContext);
   const [error, setErrors] = useState('');
+
+  useEffect(() => {
+    document.title = 'Registration';
+  }, []);
   const navigate = useNavigate();
   const location = useLocation();
   const {

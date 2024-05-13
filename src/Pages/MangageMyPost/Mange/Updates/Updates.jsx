@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../AuthContext/AuthProvider';
 import axios from 'axios';
@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 const Updates = () => {
   const usloaders = useLoaderData();
   const [startDate, setStartDate] = useState(new Date(usloaders.startDate));
-
+  useEffect(() => {
+    document.title = 'Update';
+  }, []);
   const {
     thumbnail,
     title,

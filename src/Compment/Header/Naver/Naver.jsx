@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import userProfile from '..//..//..//../public/user-profile.png';
+import { Tooltip } from 'react-tooltip';
 const Naver = () => {
   const { user, logOutUsers } = useContext(AuthContext);
   const [themes, setThemes] = useState(
@@ -43,16 +44,6 @@ const Naver = () => {
         }
       >
         Volunteer Needs
-      </NavLink>
-      <NavLink
-        to={'/myRequst'}
-        className={({ isActive }) =>
-          isActive
-            ? 'px-4  py-2  text-[#f26837] border border-[#f26837] font-semibold'
-            : 'font-semibold px-4  py-2 rounded-lg bg-base-100'
-        }
-      >
-        My Volunteer Request
       </NavLink>
     </>
   );
@@ -100,7 +91,37 @@ const Naver = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">{link}</ul>
+          <ul className="menu menu-horizontal px-1 gap-4">
+            {link}
+
+            {user && (
+              <div className="dropdown z-10">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="font-semibold px-4  py-2 rounded-lg bg-base-100"
+                >
+                  My Profile
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <Link to={'/addpost'}>
+                    <li>
+                      <a>Add Volunteer Post</a>
+                    </li>
+                  </Link>
+
+                  <Link to={'/allManegeMyPost'}>
+                    <li>
+                      <a>Manage My Post </a>
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+            )}
+          </ul>
         </div>
         <div className="navbar-end gap-4">
           <label className="swap swap-rotate">
@@ -138,34 +159,22 @@ const Naver = () => {
                   role="button"
                   className="btn btn-ghost btn-circle avatar"
                 >
-                  <div className="w-10 rounded-full">
+                  <div className="w-10 rounded-full " id="clickable">
                     <img src={user?.photoURL || userProfile} />
                   </div>
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-56 gap-3"
-                >
-                  <li>
-                    <a className="justify-between">
-                      {user?.displayName || 'Name not found'}
-                    </a>
-                  </li>
-                  <Link to={'/addpost'}>
-                    <li>
-                      <a>Add Volunteer Post</a>
-                    </li>
-                  </Link>
-                  <Link to={'/myMangePost'}>
-                    <li>
-                      <a>Manage My Post</a>
-                    </li>
-                  </Link>
 
-                  <li onClick={hadileClickLogout}>
-                    <a>Logout</a>
-                  </li>
-                </ul>
+                  <Tooltip anchorSelect="#clickable" clickable>
+                    <h2 className=" text-xl">
+                      {user?.displayName || 'Name not found'}
+                    </h2>
+                    <button
+                      className="text-xl mt-3 "
+                      onClick={hadileClickLogout}
+                    >
+                      Logout
+                    </button>
+                  </Tooltip>
+                </div>
               </div>
             </>
           ) : (

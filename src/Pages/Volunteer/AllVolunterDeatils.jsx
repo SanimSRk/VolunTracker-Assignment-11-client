@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsInstagram, BsTwitterX } from 'react-icons/bs';
 import { FaFacebook } from 'react-icons/fa6';
 import { useLoaderData } from 'react-router-dom';
@@ -10,7 +10,10 @@ import Swal from 'sweetalert2';
 const AllVolunterDeatils = () => {
   const { user } = useContext(AuthContext);
   const usloader = useLoaderData();
-
+  const [volunteer, setVolunteer] = useState(usloader);
+  useEffect(() => {
+    document.title = `${usloader.title}`;
+  }, []);
   const {
     thumbnail,
     title,
@@ -22,7 +25,7 @@ const AllVolunterDeatils = () => {
     fullName,
     startDate,
     _id,
-  } = usloader;
+  } = volunteer;
   const volunteerName = user.displayName;
   const volunteerEmail = user.email;
   const status = 'Request';
@@ -73,9 +76,9 @@ const AllVolunterDeatils = () => {
             )
             .then(res => {
               console.log(res.data);
-              // if (res.data.modifiedCount) {
-
-              // }
+              if (res.data.result.modifiedCount) {
+                setVolunteer(res.data.volunteerDetail);
+              }
             });
         }
       });
