@@ -21,6 +21,7 @@ const AllVolunterDeatils = () => {
     email,
     fullName,
     startDate,
+    _id,
   } = usloader;
   const volunteerName = user.displayName;
   const volunteerEmail = user.email;
@@ -50,6 +51,10 @@ const AllVolunterDeatils = () => {
       volunteerEmail,
       suggestion,
     };
+    const updateNumbers = {
+      neededNumber,
+    };
+
     axios
       .post('http://localhost:5000/volunteerRequest', volunteerRequest)
       .then(res => {
@@ -60,6 +65,18 @@ const AllVolunterDeatils = () => {
             text: 'Your request successfully send!',
             icon: 'success',
           });
+
+          axios
+            .patch(
+              `http://localhost:5000/volunteersNumbers/${_id}`,
+              updateNumbers
+            )
+            .then(res => {
+              console.log(res.data);
+              // if (res.data.modifiedCount) {
+
+              // }
+            });
         }
       });
   };

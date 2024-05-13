@@ -8,8 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 
 const Updates = () => {
-  const [startDate, setStartDate] = useState(new Date());
   const usloaders = useLoaderData();
+  const [startDate, setStartDate] = useState(new Date(usloaders.startDate));
+
   const {
     thumbnail,
     title,
@@ -19,6 +20,7 @@ const Updates = () => {
     neededNumber,
     email,
     fullName,
+
     _id,
   } = usloaders;
 
@@ -39,7 +41,7 @@ const Updates = () => {
       description,
       category,
       location,
-      neededNumber,
+      neededNumber: parseInt(neededNumber),
       email,
       fullName,
       startDate,

@@ -10,6 +10,7 @@ const AddVolunteers = () => {
   const email = user?.email;
   const fullName = user?.displayName;
   console.log(email, fullName);
+
   const [startDate, setStartDate] = useState(new Date());
   const {
     register,
@@ -28,7 +29,7 @@ const AddVolunteers = () => {
       description,
       category,
       location,
-      neededNumber,
+      neededNumber: parseInt(neededNumber),
       email,
       fullName,
       startDate,
