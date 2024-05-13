@@ -12,14 +12,18 @@ const Volunteer = () => {
   }, []);
   const handileClickSubmite = e => {
     e.preventDefault();
-    const title = e.target.title.value;
+    const titles = e.target.title.value.toLowerCase();
 
     axios
-      .get(`http://localhost:5000/volunteerss?title=${title}`)
+      .get(`http://localhost:5000/volunteers`)
 
       .then(res => {
-        console.log(res.data);
-        setVolunteers(res.data);
+        const result = res.data.filter(use => {
+          const data = use.title.toLowerCase().includes(titles);
+          return data;
+        });
+
+        setVolunteers(result);
       });
   };
 
