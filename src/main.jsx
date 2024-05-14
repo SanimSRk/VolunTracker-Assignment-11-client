@@ -57,7 +57,9 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allVolunteers/${params.id}`),
+          fetch(`http://localhost:5000/allVolunteers/${params.id}`, {
+            credentials: 'include',
+          }),
       },
 
       {
@@ -68,7 +70,9 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/loderData/${params.id}`),
+          fetch(`http://localhost:5000/loderData/${params.id}`, {
+            credentials: 'include',
+          }),
       },
 
       {

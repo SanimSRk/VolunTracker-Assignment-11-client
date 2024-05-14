@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Login = () => {
   const { singUsers, handileGoogleLogin } = useContext(AuthContext);
@@ -32,6 +33,15 @@ const Login = () => {
             text: 'SuccessFully Login!',
             icon: 'success',
           });
+          axios
+            .post(
+              'http://localhost:5000/jwt',
+              { email: res?.user?.email },
+              { withCredentials: true }
+            )
+            .then(res => {
+              console.log(res.data);
+            });
         }
         navigate(location.state || '/');
       })
@@ -51,6 +61,15 @@ const Login = () => {
             text: 'SuccessFully google sing!',
             icon: 'success',
           });
+          axios
+            .post(
+              'http://localhost:5000/jwt',
+              { email: res?.user?.email },
+              { withCredentials: true }
+            )
+            .then(res => {
+              console.log(res.data);
+            });
         }
         navigate(location.state || '/');
       })

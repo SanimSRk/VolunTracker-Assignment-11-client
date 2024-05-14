@@ -59,7 +59,9 @@ const AllVolunterDeatils = () => {
     };
 
     axios
-      .post('http://localhost:5000/volunteerRequest', volunteerRequest)
+      .post('http://localhost:5000/volunteerRequest', volunteerRequest, {
+        withCredentials: true,
+      })
       .then(res => {
         console.log(res.data);
         if (res.data.insertedId) {
@@ -72,7 +74,8 @@ const AllVolunterDeatils = () => {
           axios
             .patch(
               `http://localhost:5000/volunteersNumbers/${_id}`,
-              updateNumbers
+              updateNumbers,
+              { withCredentials: true }
             )
             .then(res => {
               console.log(res.data);

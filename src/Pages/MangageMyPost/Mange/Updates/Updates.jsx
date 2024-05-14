@@ -49,16 +49,20 @@ const Updates = () => {
       startDate,
     };
 
-    axios.put(`http://localhost:5000/updatess/${_id}`, volunteers).then(res => {
-      console.log(res.data);
-      if (res.data.modifiedCount) {
-        Swal.fire({
-          title: 'Good job!',
-          text: 'Successfully updates!',
-          icon: 'success',
-        });
-      }
-    });
+    axios
+      .put(`http://localhost:5000/updatess/${_id}`, volunteers, {
+        withCredentials: true,
+      })
+      .then(res => {
+        console.log(res.data);
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Successfully updates!',
+            icon: 'success',
+          });
+        }
+      });
   };
   return (
     <div className="md:w-2/3 w-full lg:w-2/3 mx-auto my-[100px] border-dotted border border-[#f26837] px-8 shadow-lg py-[72px] md:px-[50px] lg:px-[100px] rounded-lg">

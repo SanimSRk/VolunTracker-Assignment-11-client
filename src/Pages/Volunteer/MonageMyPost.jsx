@@ -10,7 +10,9 @@ const MonageMyPost = () => {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/mangesPost?email=${user.email}`)
+      .get(`http://localhost:5000/mangesPost?email=${user.email}`, {
+        withCredentials: true,
+      })
       .then(res => {
         setMyPost(res.data);
       });
@@ -27,17 +29,21 @@ const MonageMyPost = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/mangesPost/${id}`).then(res => {
-          if (res.data.deletedCount > 0) {
-            Swal.fire({
-              title: 'Deleted!',
-              text: 'Your file has been deleted.',
-              icon: 'success',
-            });
-          }
-          const deletePost = myPost.filter(prod => prod._id !== id);
-          setMyPost(deletePost);
-        });
+        axios
+          .delete(`http://localhost:5000/mangesPost/${id}`, {
+            withCredentials: true,
+          })
+          .then(res => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+            const deletePost = myPost.filter(prod => prod._id !== id);
+            setMyPost(deletePost);
+          });
       }
     });
   };

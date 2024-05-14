@@ -7,9 +7,11 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 const NeedVolunters = () => {
   const [needPost, setNeedPost] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:5000/volunteers').then(res => {
-      setNeedPost(res.data.slice(0, 6));
-    });
+    axios
+      .get('http://localhost:5000/volunteers', { withCredentials: true })
+      .then(res => {
+        setNeedPost(res.data.slice(0, 6));
+      });
   }, []);
 
   return (

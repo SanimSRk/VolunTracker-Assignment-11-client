@@ -10,7 +10,9 @@ const MyRequestData = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myrequstData?email=${user.email}`)
+      .get(`http://localhost:5000/myrequstData?email=${user.email}`, {
+        withCredentials: true,
+      })
       .then(res => {
         setRequestDt(res.data);
       });

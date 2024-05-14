@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import userProfile from '..//..//..//../public/user-profile.png';
 import { Tooltip } from 'react-tooltip';
+import axios from 'axios';
 const Naver = () => {
   const { user, logOutUsers } = useContext(AuthContext);
   const [themes, setThemes] = useState(
@@ -59,8 +60,8 @@ const Naver = () => {
   };
   return (
     <div className="">
-      <div className="navbar bg-base-100 z-10">
-        <div className="navbar-start">
+      <div className="navbar bg-base-100 z-10 ">
+        <div className="navbar-start z-20">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -83,6 +84,33 @@ const Naver = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               {link}
+              {user && (
+                <div className="dropdown z-0">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="font-semibold px-4  py-2 rounded-lg bg-base-100"
+                  >
+                    My Profile
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <Link to={'/addpost'}>
+                      <li>
+                        <a>Add Volunteer Post</a>
+                      </li>
+                    </Link>
+
+                    <Link to={'/allManegeMyPost'}>
+                      <li>
+                        <a>Manage My Post </a>
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
+              )}
             </ul>
           </div>
           <img className="w-14 mr-3" src="/logo-removebg-preview.png" alt="" />
@@ -90,7 +118,7 @@ const Naver = () => {
             Volun<span className="text-[#f26837] ">Tracker</span>
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1 gap-4">
             {link}
 
@@ -123,7 +151,7 @@ const Naver = () => {
             )}
           </ul>
         </div>
-        <div className="navbar-end gap-4">
+        <div className="navbar-end gap-4 ">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input
