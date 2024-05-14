@@ -1,16 +1,30 @@
+import { Link } from 'react-router-dom';
+
 const ExtaSection = () => {
   return (
-    <div className="mb-12">
-      <div className=" grid justify-center items-center rounded-lg md:h-[420px] h-[320px] lg:h-[600px] bg-center bg-cover bg-[linear-gradient(90.00deg,rgb(21,21,21,0.4),rgba(21,21,21,0.4)100%),url(/pexels-thirdman-7656742.jpg)] ">
-        <div className=" text-center lg:w-2/3 mx-auto md:w-2/3 md:mx-auto lg:mx-auto">
-          <h2 className="text-white md:text-3xl text-2xl leading-normal md:leading-normal lg:leading-normal lg:text-4xl font-bold ">
-            {' '}
-            Responsible for organizing and managing volunteer activities,
-            ensuring smooth operations and effective utilization of resources
-          </h2>
-          <button className="btn mt-7 bg-[#f26837] text-white border-none">
-            View details
-          </button>
+    <div className="mb-12  lg:px-0 px-4">
+      <div className=" grid justify-center items-center rounded-lg h-full  bg-center bg-cover bg-[linear-gradient(90.00deg,rgb(21,21,21,0.9),rgba(21,21,21,0.8)100%),url(/pexels-thirdman-7656742.jpg)] ">
+        <div className="lg:flex items-center gap-12  object-cover object-center">
+          <div className="">
+            <img
+              className=" lg:h-[99%] md:h-[98%] h-[50%] object-cover object-center"
+              src="/pexels-lara-jameson-9324335-removebg-preview.png"
+              alt=""
+            />
+          </div>
+          <div className="lg:w-2/3 text-[#f26837]">
+            <h2 className="lg:text-5xl text-2xl font-bold md:text-4xl md:leading-normal lg:leading-normal leading-normal">
+              Welcome to VolunTracker, your compass for navigating the realm of
+              volunteer opportunities.
+            </h2>
+            <div className="mt-6">
+              <Link to={'/volunteer'}>
+                <button className="btn  bg-transparent text-[#f26837] border-[#f26837] ">
+                  view deatils
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
