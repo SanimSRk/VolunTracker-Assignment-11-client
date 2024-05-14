@@ -59,9 +59,13 @@ const AllVolunterDeatils = () => {
     };
 
     axios
-      .post('http://localhost:5000/volunteerRequest', volunteerRequest, {
-        withCredentials: true,
-      })
+      .post(
+        'https://bolunteer-server-site.vercel.app/volunteerRequest',
+        volunteerRequest,
+        {
+          withCredentials: true,
+        }
+      )
       .then(res => {
         console.log(res.data);
         if (res.data.insertedId) {
@@ -73,7 +77,7 @@ const AllVolunterDeatils = () => {
 
           axios
             .patch(
-              `http://localhost:5000/volunteersNumbers/${_id}`,
+              `https://bolunteer-server-site.vercel.app/volunteersNumbers/${_id}`,
               updateNumbers,
               { withCredentials: true }
             )
@@ -114,63 +118,75 @@ const AllVolunterDeatils = () => {
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
 
             <div className="modal " role="dialog">
-              <div className="modal-box w-[100vh]">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className="">
-                    <div className="w-full">
-                      <img className="w-full" src={thumbnail} alt="" />
-                    </div>
-                    <div>
-                      <h2>{title}</h2>
-                      <h2 className="my-3">{category}</h2>
+              <div className="modal-box w-[100%]">
+                {neededNumber === 0 ? (
+                  <p className="font-semibold">
+                    Thank you for visiting our Volunteer Opportunities page.
+                    Currently, there are no positions available that require
+                    additional volunteers
+                  </p>
+                ) : (
+                  <>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <div className="">
+                        <div className="w-full">
+                          <img className="w-full" src={thumbnail} alt="" />
+                        </div>
+                        <div>
+                          <h2>{title}</h2>
+                          <h2 className="my-3">{category}</h2>
 
-                      <p className="">{description}</p>
-                      <p className="mt-4">location: {location}</p>
+                          <p className="">{description}</p>
+                          <p className="mt-4">location: {location}</p>
 
-                      <p className="my-3">
-                        Need Volunteer : {neededNumber} person
-                      </p>
-                      <p className="">Deadline : {startDate}</p>
-                      <div>
-                        <h2 className="my-3">Organizer name : {fullName}</h2>
-                        <h2>Organizer email : {email}</h2>
-                      </div>
-                    </div>
-                    <div className="flex gap-4 my-3">
-                      <div className="form-control w-1/2">
-                        <label className="label">
-                          <span className="label-text">Your Name</span>
-                        </label>
-                        <div className="input-bordered input grid justify-center items-center">
-                          {user?.displayName}
+                          <p className="my-3">
+                            Need Volunteer : {neededNumber} person
+                          </p>
+                          <p className="">Deadline : {startDate}</p>
+                          <div>
+                            <h2 className="my-3">
+                              Organizer name : {fullName}
+                            </h2>
+                            <h2>Organizer email : {email}</h2>
+                          </div>
+                        </div>
+                        <div className="flex gap-4 my-3">
+                          <div className="form-control w-1/2">
+                            <label className="label">
+                              <span className="label-text">Your Name</span>
+                            </label>
+                            <div className="input-bordered input grid justify-center items-center">
+                              {user?.displayName}
+                            </div>
+                          </div>
+                          <div className="form-control w-1/2">
+                            <label className="label">
+                              <span className="label-text">Your Email</span>
+                            </label>
+                            <div className="input-bordered input grid justify-center items-center">
+                              {user?.email}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="form-control w-full">
+                          <label className="label">
+                            <span className="label-text">Suggestion</span>
+                          </label>
+                          <textarea
+                            placeholder="giv me suggestion"
+                            className="textarea textarea-bordered textarea-md w-full "
+                            {...register('suggestion', { required: true })}
+                          ></textarea>
                         </div>
                       </div>
-                      <div className="form-control w-1/2">
-                        <label className="label">
-                          <span className="label-text">Your Email</span>
-                        </label>
-                        <div className="input-bordered input grid justify-center items-center">
-                          {user?.email}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-control w-full">
-                      <label className="label">
-                        <span className="label-text">Suggestion</span>
-                      </label>
-                      <textarea
-                        placeholder="giv me suggestion"
-                        className="textarea textarea-bordered textarea-md w-full "
-                        {...register('suggestion', { required: true })}
-                      ></textarea>
-                    </div>
-                  </div>
-                  <input
-                    className="btn text-white w-full mt-4 bg-[#f26837]"
-                    type="submit"
-                    value="Request"
-                  />
-                </form>
+                      <input
+                        className="btn text-white w-full mt-4 bg-[#f26837]"
+                        type="submit"
+                        value="Request"
+                      />
+                    </form>
+                  </>
+                )}
               </div>
 
               <label className="modal-backdrop" htmlFor="my_modal_7">

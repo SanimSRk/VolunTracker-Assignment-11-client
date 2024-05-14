@@ -50,9 +50,13 @@ const Updates = () => {
     };
 
     axios
-      .put(`http://localhost:5000/updatess/${_id}`, volunteers, {
-        withCredentials: true,
-      })
+      .put(
+        `https://bolunteer-server-site.vercel.app/updatess/${_id}`,
+        volunteers,
+        {
+          withCredentials: true,
+        }
+      )
       .then(res => {
         console.log(res.data);
         if (res.data.modifiedCount) {

@@ -10,9 +10,12 @@ const MyRequestData = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myrequstData?email=${user.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://bolunteer-server-site.vercel.app/myrequstData?email=${user.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then(res => {
         setRequestDt(res.data);
       });
@@ -29,17 +32,19 @@ const MyRequestData = () => {
       confirmButtonText: 'Yes, Cancellation it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/myrequstData/${id}`).then(res => {
-          if (res.data.deletedCount > 0) {
-            Swal.fire({
-              title: 'Cancellation!',
-              text: 'Your file has been deleted.',
-              icon: 'success',
-            });
-          }
-          const deletePost = requestDt.filter(prod => prod._id !== id);
-          setRequestDt(deletePost);
-        });
+        axios
+          .delete(`https://bolunteer-server-site.vercel.app/myrequstData/${id}`)
+          .then(res => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: 'Cancellation!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+            const deletePost = requestDt.filter(prod => prod._id !== id);
+            setRequestDt(deletePost);
+          });
       }
     });
   };

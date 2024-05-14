@@ -9,7 +9,7 @@ const Volunteer = () => {
   }, []);
   useEffect(() => {
     axios
-      .get('http://localhost:5000/allVolunteers', { withCredentials: true })
+      .get('https://bolunteer-server-site.vercel.app/allVolunteers')
       .then(res => {
         setVolunteers(res.data);
       });
@@ -19,7 +19,7 @@ const Volunteer = () => {
     const titles = e.target.title.value.toLowerCase();
 
     axios
-      .get(`http://localhost:5000/volunteers`, { withCredentials: true })
+      .get(`https://bolunteer-server-site.vercel.app/volunteers`)
 
       .then(res => {
         const result = res.data.filter(use => {

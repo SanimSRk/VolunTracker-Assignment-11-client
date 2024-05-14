@@ -39,16 +39,18 @@ const AddVolunteers = () => {
       startDate,
     };
 
-    axios.post('http://localhost:5000/volunteers', volunteer).then(res => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: 'Good job!',
-          text: 'successFully Volunteer post add!',
-          icon: 'success',
-        });
-      }
-    });
+    axios
+      .post('https://bolunteer-server-site.vercel.app/volunteers', volunteer)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: 'Good job!',
+            text: 'successFully Volunteer post add!',
+            icon: 'success',
+          });
+        }
+      });
   };
 
   return (

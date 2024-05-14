@@ -35,7 +35,7 @@ const Login = () => {
           });
           axios
             .post(
-              'http://localhost:5000/jwt',
+              'https://bolunteer-server-site.vercel.app/jwt',
               { email: res?.user?.email },
               { withCredentials: true }
             )
@@ -63,7 +63,7 @@ const Login = () => {
           });
           axios
             .post(
-              'http://localhost:5000/jwt',
+              'https://bolunteer-server-site.vercel.app/jwt',
               { email: res?.user?.email },
               { withCredentials: true }
             )

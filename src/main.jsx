@@ -57,9 +57,12 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allVolunteers/${params.id}`, {
-            credentials: 'include',
-          }),
+          fetch(
+            `https://bolunteer-server-site.vercel.app/allVolunteers/${params.id}`,
+            {
+              credentials: 'include',
+            }
+          ),
       },
 
       {
@@ -70,9 +73,12 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/loderData/${params.id}`, {
-            credentials: 'include',
-          }),
+          fetch(
+            `https://bolunteer-server-site.vercel.app/loderData/${params.id}`,
+            {
+              credentials: 'include',
+            }
+          ),
       },
 
       {

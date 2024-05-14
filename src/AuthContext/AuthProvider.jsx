@@ -39,7 +39,9 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     setLodings(false);
     axios
-      .get(`http://localhost:5000/logout`, { withCredentials: true })
+      .get(`https://bolunteer-server-site.vercel.app/logout`, {
+        withCredentials: true,
+      })
       .then(res => {
         console.log(res.data);
       });

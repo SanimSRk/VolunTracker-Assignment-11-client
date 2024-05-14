@@ -8,7 +8,7 @@ const NeedVolunters = () => {
   const [needPost, setNeedPost] = useState([]);
   useEffect(() => {
     axios
-      .get('http://localhost:5000/volunteers', { withCredentials: true })
+      .get('https://bolunteer-server-site.vercel.app/volunteers')
       .then(res => {
         setNeedPost(res.data.slice(0, 6));
       });
