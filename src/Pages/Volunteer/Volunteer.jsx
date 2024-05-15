@@ -85,11 +85,17 @@ const Volunteer = () => {
             </form>
           </div>
           <div className="flex gap-5">
-            <button onClick={() => handileClickChenges('grid')}>
+            <button
+              className={cheangeLayout ? 'text-[#f26837] p-1' : 'p-1'}
+              onClick={() => handileClickChenges('grid')}
+            >
               <IoGridOutline className="text-3xl" />
             </button>
 
-            <button onClick={() => handileClickChenges('tabile')}>
+            <button
+              className={!cheangeLayout ? 'text-[#f26837] p-1' : 'p-1'}
+              onClick={() => handileClickChenges('tabile')}
+            >
               <FaTableList className="text-3xl" />
             </button>
           </div>
