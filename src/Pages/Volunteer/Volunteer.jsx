@@ -4,6 +4,8 @@ import AllVoluntterCart from './AllVoluntterCart';
 
 const Volunteer = () => {
   const [volunteers, setVolunteers] = useState([]);
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     document.title = 'Volunteer-Needs';
   }, []);
@@ -14,22 +16,22 @@ const Volunteer = () => {
         setVolunteers(res.data);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://bolunteer-server-site.vercel.app/volunteerSerch?search=${search}`
+      )
+      .then(res => {
+        console.log(res.data);
+        setVolunteers(res.data);
+      });
+  }, [search]);
+
   const handileClickSubmite = e => {
     e.preventDefault();
-    const titles = e.target.title.value.toLowerCase();
-
-    axios
-      .get(`https://bolunteer-server-site.vercel.app/volunteerSearch?search=${titles}`)
-
-      .then(res => {
-        // const result = res.data.filter(use => {
-        //   const data = use.title.toLowerCase().includes(titles);
-        //   return data;
-        // });
-
-        // setVolunteers(result);
-        console.log(res.data);
-      });
+    const searchText = e.target.title.value;
+    setSearch(searchText);
   };
 
   return (
