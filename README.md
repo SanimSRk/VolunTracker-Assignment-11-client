@@ -1,8 +1,21 @@
-# React + Vite
+# VolunTracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### live link :https://volunteers-eb06b.web.app/
 
-Currently, two official plugins are available:
+- **Easy Sign-Up and Profile Management**: Volunteers can easily sign up,
+  create, and manage their profiles to showcase their skills and interests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Event Management**: Organizations can create, promote, and manage volunteer
+  events with ease, including scheduling, tracking, and reporting features.
+
+- **Post Volunteer Needs**: Organizations can post detailed volunteer needs,
+  specifying the skills required, time commitment, and the impact of the role.
+  This helps attract the right volunteers for each opportunity.
+
+- **Responsive Design**: Our platform is fully responsive and accessible across
+  all devices, including desktops, tablets, and smartphones. Manage your
+  volunteer activities anytime, anywhere.
+
+- **Customizable Dashboards**: Both volunteers and organizations can customize
+  their dashboards to view the most relevant information at a glance. Track
+  hours, upcoming events, and recent communications easily.
