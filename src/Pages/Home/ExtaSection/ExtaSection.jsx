@@ -12,13 +12,13 @@ const ExtaSection = () => {
               alt=""
             />
           </div>
-          <div className="lg:w-2/3 text-[#f26837]">
+          <div className="lg:w-2/3 p-4 text-[#f26837]">
             <h2 className="lg:text-5xl text-2xl font-bold md:text-4xl md:leading-normal lg:leading-normal leading-normal">
               Welcome to VolunTracker, your compass for navigating the realm of
               volunteer opportunities.
             </h2>
             <div className="mt-6">
-              <Link to={'/volunteer'}>
+              <Link to={'/allNeedVolunteerSection'}>
                 <button className="btn  bg-transparent text-[#f26837] border-[#f26837] ">
                   view deatils
                 </button>

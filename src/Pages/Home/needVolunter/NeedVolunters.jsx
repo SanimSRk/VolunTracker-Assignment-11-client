@@ -30,7 +30,7 @@ const NeedVolunters = () => {
         ))}
       </div>
       <div className="grid justify-center mt-12">
-        <Link to={'/volunteer'}>
+        <Link to={'/allNeedVolunteerSection'}>
           <button className="btn bg-[#f26837] text-white">
             See all <FaArrowRightLong className="text-xl" />
           </button>

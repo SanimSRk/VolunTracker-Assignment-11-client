@@ -18,8 +18,7 @@ import Updates from './Pages/MangageMyPost/Mange/Updates/Updates';
 
 import NotFound from './Compment/NoutFound/NotFound';
 import AllManageMyPost from './AllMangeMyPost/AllManageMyPost';
-import ChangeLayout from './Pages/Home/needVolunter/ChangeLayout/ChangeLayout';
-import TableLayout from './Pages/Home/needVolunter/ChangeLayout/TableLayout';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -88,12 +87,9 @@ const router = createBrowserRouter([
           </PrivtedRoutd>
         ),
       },
+
       {
-        path: '/layoutChange',
-        element: <ChangeLayout></ChangeLayout>,
-      },
-      {
-        path: 'allNeedVolunteerSection',
+        path: '/allNeedVolunteerSection',
         element: <Volunteer></Volunteer>,
       },
     ],
