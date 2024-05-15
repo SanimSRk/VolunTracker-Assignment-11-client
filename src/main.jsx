@@ -18,6 +18,8 @@ import Updates from './Pages/MangageMyPost/Mange/Updates/Updates';
 
 import NotFound from './Compment/NoutFound/NotFound';
 import AllManageMyPost from './AllMangeMyPost/AllManageMyPost';
+import ChangeLayout from './Pages/Home/needVolunter/ChangeLayout/ChangeLayout';
+import TableLayout from './Pages/Home/needVolunter/ChangeLayout/TableLayout';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,10 +30,7 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>,
       },
-      {
-        path: '/volunteer',
-        element: <Volunteer></Volunteer>,
-      },
+
       {
         path: '/login',
         element: <Login></Login>,
@@ -88,6 +87,14 @@ const router = createBrowserRouter([
             <AllManageMyPost></AllManageMyPost>
           </PrivtedRoutd>
         ),
+      },
+      {
+        path: '/layoutChange',
+        element: <ChangeLayout></ChangeLayout>,
+      },
+      {
+        path: 'allNeedVolunteerSection',
+        element: <Volunteer></Volunteer>,
       },
     ],
   },

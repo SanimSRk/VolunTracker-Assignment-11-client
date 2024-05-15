@@ -19,15 +19,16 @@ const Volunteer = () => {
     const titles = e.target.title.value.toLowerCase();
 
     axios
-      .get(`https://bolunteer-server-site.vercel.app/volunteers`)
+      .get(`https://bolunteer-server-site.vercel.app/volunteerSearch?search=${titles}`)
 
       .then(res => {
-        const result = res.data.filter(use => {
-          const data = use.title.toLowerCase().includes(titles);
-          return data;
-        });
+        // const result = res.data.filter(use => {
+        //   const data = use.title.toLowerCase().includes(titles);
+        //   return data;
+        // });
 
-        setVolunteers(result);
+        // setVolunteers(result);
+        console.log(res.data);
       });
   };
 

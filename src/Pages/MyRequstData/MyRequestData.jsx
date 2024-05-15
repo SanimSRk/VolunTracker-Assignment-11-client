@@ -11,7 +11,7 @@ const MyRequestData = () => {
   useEffect(() => {
     axios
       .get(
-        `https://bolunteer-server-site.vercel.app/myrequstData?email=${user.email}`,
+        `https://bolunteer-server-site.vercel.app/myrequstDatass?volunteerEmail=${user.email}`,
         {
           withCredentials: true,
         }
@@ -88,7 +88,7 @@ const MyRequestData = () => {
                     <tr className="bg-base-200 ">
                       <th className="py-6">{index + 1}</th>
                       <td>{pro?.category}</td>
-                      <td>{pro?.email} person</td>
+                      <td>{pro?.volunteerEmail} person</td>
                       <td className="btn rounded-3xl bg-[#f26837] text-white">
                         {pro?.status}
                       </td>

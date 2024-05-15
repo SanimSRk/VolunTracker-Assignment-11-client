@@ -3,11 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext/AuthProvider';
 import userProfile from '..//..//..//../public/user-profile.png';
 import { Tooltip } from 'react-tooltip';
-import axios from 'axios';
+
 const Naver = () => {
   const { user, logOutUsers } = useContext(AuthContext);
   const [themes, setThemes] = useState(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : light
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
   );
 
   const hanileThemeSet = e => {
@@ -37,7 +37,7 @@ const Naver = () => {
         Home
       </NavLink>
       <NavLink
-        to={'/volunteer'}
+        to={'/allNeedVolunteerSection'}
         className={({ isActive }) =>
           isActive
             ? 'px-4  py-2  text-[#f26837] border border-[#f26837] font-semibold'

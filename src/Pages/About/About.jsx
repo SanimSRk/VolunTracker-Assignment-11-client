@@ -12,7 +12,7 @@ const About = () => {
       <div className=" lg:w-1/2 ] ">
         <img
           className=" lg:h-[115vh] w-full object-cover object-center"
-          src="/public/pexels-rdne-6646896.jpg"
+          src="/pexels-rdne-6646896.jpg"
           alt=""
         />
       </div>

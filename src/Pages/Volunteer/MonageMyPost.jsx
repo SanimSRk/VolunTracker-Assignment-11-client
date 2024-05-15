@@ -10,9 +10,12 @@ const MonageMyPost = () => {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/mangesPost?email=${user.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://bolunteer-server-site.vercel.app/mangesPost?email=${user.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then(res => {
         setMyPost(res.data);
       });
@@ -30,9 +33,7 @@ const MonageMyPost = () => {
     }).then(result => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/mangesPost/${id}`, {
-            withCredentials: true,
-          })
+          .delete(`https://bolunteer-server-site.vercel.app/mangesPost/${id}`)
           .then(res => {
             if (res.data.deletedCount > 0) {
               Swal.fire({
@@ -43,6 +44,7 @@ const MonageMyPost = () => {
             }
             const deletePost = myPost.filter(prod => prod._id !== id);
             setMyPost(deletePost);
+            console.log(deletePost);
           });
       }
     });
